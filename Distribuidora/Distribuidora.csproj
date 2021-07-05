@@ -132,10 +132,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ModeloDAO\ModeloDAO.csproj">
-      <Project>{a891ddde-4c3d-4dcf-a8e2-2a0205212c08}</Project>
-      <Name>ModeloDAO</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ModeloEDM\ModeloEDM.csproj">
       <Project>{3b0e563a-23e7-408e-862b-97d792ba5d5a}</Project>
       <Name>ModeloEDM</Name>

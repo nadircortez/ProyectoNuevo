@@ -26,5 +26,10 @@ namespace Distribuidora.Catalogos
         {
 
         }
+
+        private void Contenedor_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

@@ -1,8 +1,5 @@
 ﻿using Distribuidora.Catalogos;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Distribuidora
@@ -18,7 +15,7 @@ namespace Distribuidora
             
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMDI());
+            Application.Run(new frmLogin());
         }
     }
 }

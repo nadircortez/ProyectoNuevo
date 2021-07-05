@@ -73,7 +73,18 @@ namespace Distribuidora.Catalogos
 
         private void btnProveedor_Click(object sender, EventArgs e)
         {
-            
+            AbrirFormHijo(new frmProveedor());
+        }
+        private void AbrirFormHijo(object formhijo) 
+        {
+            if (this.pnlContenedor.Controls.Count > 0)
+                this.pnlContenedor.Controls.RemoveAt(0);
+            Form fh = formhijo as Form;
+            fh.TopLevel = false;
+            fh.Dock = DockStyle.Fill;
+            this.pnlContenedor.Controls.Add(fh);
+            this.pnlContenedor.Tag = fh;
+            fh.Show();
         }
     }
 }
