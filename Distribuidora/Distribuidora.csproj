@@ -52,6 +52,12 @@
     <Compile Include="Catalogos\fmrCliente.Designer.cs">
       <DependentUpon>fmrCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Catalogos\FormularioTEST.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Catalogos\FormularioTEST.Designer.cs">
+      <DependentUpon>FormularioTEST.cs</DependentUpon>
+    </Compile>
     <Compile Include="Catalogos\frmProveedor.cs">
       <SubType>Form</SubType>
     </Compile>
