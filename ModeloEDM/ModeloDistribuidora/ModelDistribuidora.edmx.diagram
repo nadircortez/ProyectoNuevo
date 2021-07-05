@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2f9360fa3a494a5bbadb25a73feb5217" Name="Diagram1" ZoomLevel="111" >
+        <EntityTypeShape EntityType="ModelDistribuidora.Persona" Width="1.5" PointX="0.5" PointY="0.625" />
+        <EntityTypeShape EntityType="ModelDistribuidora.Proveedor" Width="1.5" PointX="5.125" PointY="0.75" />
+        <EntityTypeShape EntityType="ModelDistribuidora.Producto" Width="1.5" PointX="7.5" PointY="4.25" />
+        <EntityTypeShape EntityType="ModelDistribuidora.Categoria" Width="1.5" PointX="10.375" PointY="3.875" />
+        <EntityTypeShape EntityType="ModelDistribuidora.Inventario" Width="1.5" PointX="10.625" PointY="6" />
+        <EntityTypeShape EntityType="ModelDistribuidora.FacVenta" Width="1.5" PointX="3" PointY="4.125" />
+        <EntityTypeShape EntityType="ModelDistribuidora.DetalleFacVenta" Width="1.5" PointX="5.25" PointY="4.375" />
+        <EntityTypeShape EntityType="ModelDistribuidora.FacCompra" Width="1.5" PointX="7.625" PointY="0.5" />
+        <EntityTypeShape EntityType="ModelDistribuidora.DetalleFacCompra" Width="1.5" PointX="9.875" PointY="0.625" />
+        <EntityTypeShape EntityType="ModelDistribuidora.Cliente" Width="1.5" PointX="0.75" PointY="4.625" />
+        <EntityTypeShape EntityType="ModelDistribuidora.Empleado" Width="1.5" PointX="2.875" PointY="1.125" />
+        <InheritanceConnector EntityType="ModelDistribuidora.Cliente" />
+        <InheritanceConnector EntityType="ModelDistribuidora.Empleado" />
+        <AssociationConnector Association="ModelDistribuidora.ProveedorFacCompra" />
+        <AssociationConnector Association="ModelDistribuidora.FacCompraDetalleFacCompra" />
+        <AssociationConnector Association="ModelDistribuidora.ProductoDetalleFacCompra" />
+        <AssociationConnector Association="ModelDistribuidora.ProductoDetalleFacVenta" />
+        <AssociationConnector Association="ModelDistribuidora.FacVentaDetalleFacVenta" />
+        <AssociationConnector Association="ModelDistribuidora.CategoriaProducto" />
+        <AssociationConnector Association="ModelDistribuidora.InventarioProducto" />
+        <AssociationConnector Association="ModelDistribuidora.ClienteFacVenta" />
+        <AssociationConnector Association="ModelDistribuidora.EmpleadoFacCompra" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

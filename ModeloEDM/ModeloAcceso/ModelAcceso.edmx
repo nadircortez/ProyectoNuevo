@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ModelAcceso.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ModelAccesoStoreContainer">
+    <EntitySet Name="Permiso" EntityType="ModelAcceso.Store.Permiso" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AsignacionPermisos" EntityType="ModelAcceso.Store.AsignacionPermisos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Usuario" EntityType="ModelAcceso.Store.Usuario" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="PermisoAsignacionPermisos" Association="ModelAcceso.Store.PermisoAsignacionPermisos">
+      <End Role="Permiso" EntitySet="Permiso" />
+      <End Role="AsignacionPermisos" EntitySet="AsignacionPermisos" />
+    </AssociationSet>
+    <AssociationSet Name="UsuarioAsignacionPermisos" Association="ModelAcceso.Store.UsuarioAsignacionPermisos">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="AsignacionPermisos" EntitySet="AsignacionPermisos" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Permiso">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nchar" Nullable="false" MaxLength="25" />
+    <Property Name="CodPemiso" Type="nchar" Nullable="false" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="AsignacionPermisos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PermisoId" Type="int" Nullable="false" />
+    <Property Name="UsuarioId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Users" Type="nchar" Nullable="false" MaxLength="50" />
+    <Property Name="Pass" Type="nchar" Nullable="false" MaxLength="50" />
+    <Property Name="Nombres" Type="nchar" Nullable="false" MaxLength="50" />
+    <Property Name="Apellidos" Type="nchar" Nullable="false" MaxLength="50" />
+    <Property Name="Cedula" Type="nchar" Nullable="false" MaxLength="16" />
+    <Property Name="Salario" Type="decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Direccion" Type="nchar" Nullable="false" MaxLength="80" />
+    <Property Name="Estado" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="PermisoAsignacionPermisos">
+    <End Role="Permiso" Type="ModelAcceso.Store.Permiso" Multiplicity="1" />
+    <End Role="AsignacionPermisos" Type="ModelAcceso.Store.AsignacionPermisos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Permiso">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AsignacionPermisos">
+        <PropertyRef Name="PermisoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UsuarioAsignacionPermisos">
+    <End Role="Usuario" Type="ModelAcceso.Store.Usuario" Multiplicity="1" />
+    <End Role="AsignacionPermisos" Type="ModelAcceso.Store.AsignacionPermisos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AsignacionPermisos">
+        <PropertyRef Name="UsuarioId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ModelAcceso" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ModelAccesoContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Permiso" EntityType="ModelAcceso.Permiso" />
+          <EntitySet Name="AsignacionPermisos" EntityType="ModelAcceso.AsignacionPermisos" />
+          <EntitySet Name="Usuario" EntityType="ModelAcceso.Usuario" />
+          <AssociationSet Name="PermisoAsignacionPermisos" Association="ModelAcceso.PermisoAsignacionPermisos">
+            <End Role="Permiso" EntitySet="Permiso" />
+            <End Role="AsignacionPermisos" EntitySet="AsignacionPermisos" />
+          </AssociationSet>
+          <AssociationSet Name="UsuarioAsignacionPermisos" Association="ModelAcceso.UsuarioAsignacionPermisos">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="AsignacionPermisos" EntitySet="AsignacionPermisos" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Permiso">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="true" />
+          <Property Name="CodPemiso" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="AsignacionPermisos" Relationship="ModelAcceso.PermisoAsignacionPermisos" FromRole="Permiso" ToRole="AsignacionPermisos" />
+        </EntityType>
+        <EntityType Name="AsignacionPermisos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PermisoId" Type="Int32" Nullable="false" />
+          <Property Name="UsuarioId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Permiso" Relationship="ModelAcceso.PermisoAsignacionPermisos" FromRole="AsignacionPermisos" ToRole="Permiso" />
+          <NavigationProperty Name="Usuario" Relationship="ModelAcceso.UsuarioAsignacionPermisos" FromRole="AsignacionPermisos" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Users" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Pass" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Nombres" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Apellidos" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Cedula" Type="String" Nullable="false" MaxLength="16" FixedLength="true" Unicode="true" />
+          <Property Name="Salario" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Direccion" Type="String" Nullable="false" MaxLength="80" FixedLength="true" Unicode="true" />
+          <Property Name="Estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AsignacionPermisos" Relationship="ModelAcceso.UsuarioAsignacionPermisos" FromRole="Usuario" ToRole="AsignacionPermisos" />
+        </EntityType>
+        <Association Name="PermisoAsignacionPermisos">
+          <End Type="ModelAcceso.Permiso" Role="Permiso" Multiplicity="1" />
+          <End Type="ModelAcceso.AsignacionPermisos" Role="AsignacionPermisos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permiso">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AsignacionPermisos">
+              <PropertyRef Name="PermisoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UsuarioAsignacionPermisos">
+          <End Type="ModelAcceso.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="ModelAcceso.AsignacionPermisos" Role="AsignacionPermisos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AsignacionPermisos">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelAccesoStoreContainer" CdmEntityContainer="ModelAccesoContainer">
+    <EntitySetMapping Name="Permiso">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelAcceso.Permiso)">
+        <MappingFragment StoreEntitySet="Permiso">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="CodPemiso" ColumnName="CodPemiso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AsignacionPermisos">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelAcceso.AsignacionPermisos)">
+        <MappingFragment StoreEntitySet="AsignacionPermisos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PermisoId" ColumnName="PermisoId" />
+          <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelAcceso.Usuario)">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Users" ColumnName="Users" />
+          <ScalarProperty Name="Pass" ColumnName="Pass" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+          <ScalarProperty Name="Salario" ColumnName="Salario" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

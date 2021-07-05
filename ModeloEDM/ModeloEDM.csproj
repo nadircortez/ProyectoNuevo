@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3B0E563A-23E7-408E-862B-97D792BA5D5A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ModeloEDM</RootNamespace>
+    <AssemblyName>ModeloEDM</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\Distribuidora\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\Distribuidora\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="ModeloAcceso\AsignacionPermisos.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloAcceso\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloAcceso\ModelAcceso.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelAcceso.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloAcceso\ModelAcceso.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelAcceso.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloAcceso\ModelAcceso.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelAcceso.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloAcceso\Permiso.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloAcceso\Usuario.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDistribuidora\Categoria.cs">
+      <DependentUpon>ModelDistribuidora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDistribuidora\Cliente.cs">
+      <DependentUpon>ModelDistribuidora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDistribuidora\DetalleFacCompra.cs">
+      <DependentUpon>ModelDistribuidora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDistribuidora\DetalleFacVenta.cs">
+      <DependentUpon>ModelDistribuidora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDistribuidora\Empleado.cs">
+      <DependentUpon>ModelDistribuidora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDistribuidora\FacCompra.cs">
+      <DependentUpon>ModelDistribuidora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDistribuidora\FacVenta.cs">
+      <DependentUpon>ModelDistribuidora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDistribuidora\Inventario.cs">
+      <DependentUpon>ModelDistribuidora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDistribuidora\ModelDistribuidora.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelDistribuidora.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDistribuidora\ModelDistribuidora.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelDistribuidora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDistribuidora\ModelDistribuidora.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelDistribuidora.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDistribuidora\Persona.cs">
+      <DependentUpon>ModelDistribuidora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDistribuidora\Producto.cs">
+      <DependentUpon>ModelDistribuidora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloDistribuidora\Proveedor.cs">
+      <DependentUpon>ModelDistribuidora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="ModeloAcceso\ModelAcceso.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelAcceso.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="ModeloAcceso\ModelAcceso.edmx.diagram">
+      <DependentUpon>ModelAcceso.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="ModeloDistribuidora\ModelDistribuidora.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelDistribuidora.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ModeloDistribuidora\ModelDistribuidora.edmx.diagram">
+      <DependentUpon>ModelDistribuidora.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ModeloAcceso\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+      <DependentUpon>ModelAcceso.edmx</DependentUpon>
+    </Content>
+    <Content Include="ModeloAcceso\ModelAcceso.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelAcceso.Context.cs</LastGenOutput>
+      <DependentUpon>ModelAcceso.edmx</DependentUpon>
+    </Content>
+    <Content Include="ModeloAcceso\ModelAcceso.edmx.sql" />
+    <Content Include="ModeloAcceso\ModelAcceso.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelAcceso.cs</LastGenOutput>
+      <DependentUpon>ModelAcceso.edmx</DependentUpon>
+    </Content>
+    <Content Include="ModeloDistribuidora\ModelDistribuidora.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelDistribuidora.Context.cs</LastGenOutput>
+      <DependentUpon>ModelDistribuidora.edmx</DependentUpon>
+    </Content>
+    <Content Include="ModeloDistribuidora\ModelDistribuidora.edmx.sql" />
+    <Content Include="ModeloDistribuidora\ModelDistribuidora.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelDistribuidora.cs</LastGenOutput>
+      <DependentUpon>ModelDistribuidora.edmx</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

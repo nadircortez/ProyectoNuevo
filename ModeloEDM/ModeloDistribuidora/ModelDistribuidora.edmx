@@ -1,0 +1,828 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ModelDistribuidora.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ModelDistribuidoraStoreContainer">
+    <EntitySet Name="Personas" EntityType="ModelDistribuidora.Store.Personas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Proveedores" EntityType="ModelDistribuidora.Store.Proveedores" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Productos" EntityType="ModelDistribuidora.Store.Productos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Categorias" EntityType="ModelDistribuidora.Store.Categorias" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Inventarios" EntityType="ModelDistribuidora.Store.Inventarios" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FacVentas" EntityType="ModelDistribuidora.Store.FacVentas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DetalleFacVentas" EntityType="ModelDistribuidora.Store.DetalleFacVentas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FacCompras" EntityType="ModelDistribuidora.Store.FacCompras" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DetalleFacCompras" EntityType="ModelDistribuidora.Store.DetalleFacCompras" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Personas_Cliente" EntityType="ModelDistribuidora.Store.Personas_Cliente" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Personas_Empleado" EntityType="ModelDistribuidora.Store.Personas_Empleado" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="ProveedorFacCompra" Association="ModelDistribuidora.Store.ProveedorFacCompra">
+      <End Role="Proveedor" EntitySet="Proveedores" />
+      <End Role="FacCompra" EntitySet="FacCompras" />
+    </AssociationSet>
+    <AssociationSet Name="FacCompraDetalleFacCompra" Association="ModelDistribuidora.Store.FacCompraDetalleFacCompra">
+      <End Role="FacCompra" EntitySet="FacCompras" />
+      <End Role="DetalleFacCompra" EntitySet="DetalleFacCompras" />
+    </AssociationSet>
+    <AssociationSet Name="ProductoDetalleFacCompra" Association="ModelDistribuidora.Store.ProductoDetalleFacCompra">
+      <End Role="Producto" EntitySet="Productos" />
+      <End Role="DetalleFacCompra" EntitySet="DetalleFacCompras" />
+    </AssociationSet>
+    <AssociationSet Name="ProductoDetalleFacVenta" Association="ModelDistribuidora.Store.ProductoDetalleFacVenta">
+      <End Role="Producto" EntitySet="Productos" />
+      <End Role="DetalleFacVenta" EntitySet="DetalleFacVentas" />
+    </AssociationSet>
+    <AssociationSet Name="FacVentaDetalleFacVenta" Association="ModelDistribuidora.Store.FacVentaDetalleFacVenta">
+      <End Role="FacVenta" EntitySet="FacVentas" />
+      <End Role="DetalleFacVenta" EntitySet="DetalleFacVentas" />
+    </AssociationSet>
+    <AssociationSet Name="CategoriaProducto" Association="ModelDistribuidora.Store.CategoriaProducto">
+      <End Role="Categoria" EntitySet="Categorias" />
+      <End Role="Producto" EntitySet="Productos" />
+    </AssociationSet>
+    <AssociationSet Name="InventarioProducto" Association="ModelDistribuidora.Store.InventarioProducto">
+      <End Role="Inventario" EntitySet="Inventarios" />
+      <End Role="Producto" EntitySet="Productos" />
+    </AssociationSet>
+    <AssociationSet Name="ClienteFacVenta" Association="ModelDistribuidora.Store.ClienteFacVenta">
+      <End Role="Cliente" EntitySet="Personas_Cliente" />
+      <End Role="FacVenta" EntitySet="FacVentas" />
+    </AssociationSet>
+    <AssociationSet Name="EmpleadoFacCompra" Association="ModelDistribuidora.Store.EmpleadoFacCompra">
+      <End Role="Empleado" EntitySet="Personas_Empleado" />
+      <End Role="FacCompra" EntitySet="FacCompras" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cliente_inherits_Persona" Association="ModelDistribuidora.Store.FK_Cliente_inherits_Persona">
+      <End Role="Persona" EntitySet="Personas" />
+      <End Role="Cliente" EntitySet="Personas_Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Empleado_inherits_Persona" Association="ModelDistribuidora.Store.FK_Empleado_inherits_Persona">
+      <End Role="Persona" EntitySet="Personas" />
+      <End Role="Empleado" EntitySet="Personas_Empleado" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Personas">
+    <Key>
+      <PropertyRef Name="IdPersona" />
+    </Key>
+    <Property Name="IdPersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="char" Nullable="false" MaxLength="5" />
+    <Property Name="PrimerNombre" Type="char" Nullable="false" MaxLength="15" />
+    <Property Name="SegundoNombre" Type="char" Nullable="false" MaxLength="15" />
+    <Property Name="PrimerApellido" Type="char" Nullable="false" MaxLength="15" />
+    <Property Name="SegundoApellido" Type="char" Nullable="false" MaxLength="15" />
+    <Property Name="Telefono" Type="char" Nullable="false" MaxLength="10" />
+    <Property Name="Genero" Type="char" Nullable="false" MaxLength="10" />
+    <Property Name="Correo" Type="char" Nullable="false" MaxLength="20" />
+    <Property Name="Direccion" Type="char" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Proveedores">
+    <Key>
+      <PropertyRef Name="IProveedor" />
+    </Key>
+    <Property Name="IProveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="char" Nullable="false" MaxLength="5" />
+    <Property Name="Nombre" Type="char" Nullable="false" MaxLength="15" />
+    <Property Name="RazonSocial" Type="char" Nullable="false" MaxLength="20" />
+    <Property Name="Ruc" Type="char" Nullable="false" MaxLength="20" />
+    <Property Name="Telefono" Type="char" Nullable="false" MaxLength="10" />
+    <Property Name="Correo" Type="char" Nullable="false" MaxLength="20" />
+    <Property Name="Direccion" Type="char" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Productos">
+    <Key>
+      <PropertyRef Name="IdProducto" />
+    </Key>
+    <Property Name="IdProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="char" Nullable="false" MaxLength="30" />
+    <Property Name="Marca" Type="char" Nullable="false" MaxLength="20" />
+    <Property Name="Presentacion" Type="char" Nullable="false" MaxLength="20" />
+    <Property Name="Costo" Type="float" Nullable="false" />
+    <Property Name="Precio" Type="float" Nullable="false" />
+    <Property Name="UPC" Type="int" Nullable="false" />
+    <Property Name="Categoria" Type="char" Nullable="false" MaxLength="20" />
+    <Property Name="Minimo" Type="int" Nullable="false" />
+    <Property Name="Maximo" Type="int" Nullable="false" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="CategoriaIdCategoria" Type="int" Nullable="false" />
+    <Property Name="InventarioIdInventario" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Categorias">
+    <Key>
+      <PropertyRef Name="IdCategoria" />
+    </Key>
+    <Property Name="IdCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="char" Nullable="false" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Inventarios">
+    <Key>
+      <PropertyRef Name="IdInventario" />
+    </Key>
+    <Property Name="IdInventario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="char" Nullable="false" MaxLength="30" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FacVentas">
+    <Key>
+      <PropertyRef Name="IdFacVenta" />
+    </Key>
+    <Property Name="IdFacVenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NumFactura" Type="int" Nullable="false" />
+    <Property Name="Fecha" Type="char" Nullable="false" MaxLength="15" />
+    <Property Name="Ruc" Type="char" Nullable="false" MaxLength="20" />
+    <Property Name="Cliente" Type="char" Nullable="false" MaxLength="30" />
+    <Property Name="Vendedor" Type="char" Nullable="false" MaxLength="30" />
+    <Property Name="SubTotal" Type="float" Nullable="false" />
+    <Property Name="IVA" Type="float" Nullable="false" />
+    <Property Name="Total" Type="float" Nullable="false" />
+    <Property Name="Pago" Type="float" Nullable="false" />
+    <Property Name="ClienteIdPersona" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DetalleFacVentas">
+    <Key>
+      <PropertyRef Name="IdDetalleVenta" />
+    </Key>
+    <Property Name="IdDetalleVenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="int" Nullable="false" />
+    <Property Name="DesPro" Type="char" Nullable="false" MaxLength="15" />
+    <Property Name="MarPro" Type="char" Nullable="false" MaxLength="15" />
+    <Property Name="CanPro" Type="float" Nullable="false" />
+    <Property Name="PrePro" Type="float" Nullable="false" />
+    <Property Name="TotPro" Type="float" Nullable="false" />
+    <Property Name="ProductoIdProducto" Type="int" Nullable="false" />
+    <Property Name="FacVentaIdFacVenta" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FacCompras">
+    <Key>
+      <PropertyRef Name="IdFacCompra" />
+    </Key>
+    <Property Name="IdFacCompra" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Codigo" Type="int" Nullable="false" />
+    <Property Name="NumFactura" Type="char" Nullable="false" MaxLength="15" />
+    <Property Name="SubTotal" Type="float" Nullable="false" />
+    <Property Name="IVA" Type="float" Nullable="false" />
+    <Property Name="Total" Type="float" Nullable="false" />
+    <Property Name="ProveedorIProveedor" Type="int" Nullable="false" />
+    <Property Name="EmpleadoIdPersona" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DetalleFacCompras">
+    <Key>
+      <PropertyRef Name="IdDetalleCompra" />
+    </Key>
+    <Property Name="IdDetalleCompra" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CodPro" Type="int" Nullable="false" />
+    <Property Name="DesPro" Type="char" Nullable="false" MaxLength="30" />
+    <Property Name="MarPro" Type="char" Nullable="false" MaxLength="30" />
+    <Property Name="CanPro" Type="float" Nullable="false" />
+    <Property Name="PrecPro" Type="float" Nullable="false" />
+    <Property Name="TotalPro" Type="float" Nullable="false" />
+    <Property Name="FacCompraIdFacCompra" Type="int" Nullable="false" />
+    <Property Name="ProductoIdProducto" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Personas_Cliente">
+    <Key>
+      <PropertyRef Name="IdPersona" />
+    </Key>
+    <Property Name="IdCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ruc" Type="nchar" Nullable="false" MaxLength="20" />
+    <Property Name="IdPersona" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Personas_Empleado">
+    <Key>
+      <PropertyRef Name="IdPersona" />
+    </Key>
+    <Property Name="IdEmplado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Inss" Type="char" Nullable="false" MaxLength="10" />
+    <Property Name="Cargo" Type="char" Nullable="false" MaxLength="20" />
+    <Property Name="Carnet" Type="char" Nullable="false" MaxLength="10" />
+    <Property Name="FecIngreso" Type="datetime" Nullable="false" />
+    <Property Name="IdPersona" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="ProveedorFacCompra">
+    <End Role="Proveedor" Type="ModelDistribuidora.Store.Proveedores" Multiplicity="1" />
+    <End Role="FacCompra" Type="ModelDistribuidora.Store.FacCompras" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proveedor">
+        <PropertyRef Name="IProveedor" />
+      </Principal>
+      <Dependent Role="FacCompra">
+        <PropertyRef Name="ProveedorIProveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FacCompraDetalleFacCompra">
+    <End Role="FacCompra" Type="ModelDistribuidora.Store.FacCompras" Multiplicity="1" />
+    <End Role="DetalleFacCompra" Type="ModelDistribuidora.Store.DetalleFacCompras" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FacCompra">
+        <PropertyRef Name="IdFacCompra" />
+      </Principal>
+      <Dependent Role="DetalleFacCompra">
+        <PropertyRef Name="FacCompraIdFacCompra" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductoDetalleFacCompra">
+    <End Role="Producto" Type="ModelDistribuidora.Store.Productos" Multiplicity="1" />
+    <End Role="DetalleFacCompra" Type="ModelDistribuidora.Store.DetalleFacCompras" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="IdProducto" />
+      </Principal>
+      <Dependent Role="DetalleFacCompra">
+        <PropertyRef Name="ProductoIdProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductoDetalleFacVenta">
+    <End Role="Producto" Type="ModelDistribuidora.Store.Productos" Multiplicity="1" />
+    <End Role="DetalleFacVenta" Type="ModelDistribuidora.Store.DetalleFacVentas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="IdProducto" />
+      </Principal>
+      <Dependent Role="DetalleFacVenta">
+        <PropertyRef Name="ProductoIdProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FacVentaDetalleFacVenta">
+    <End Role="FacVenta" Type="ModelDistribuidora.Store.FacVentas" Multiplicity="1" />
+    <End Role="DetalleFacVenta" Type="ModelDistribuidora.Store.DetalleFacVentas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FacVenta">
+        <PropertyRef Name="IdFacVenta" />
+      </Principal>
+      <Dependent Role="DetalleFacVenta">
+        <PropertyRef Name="FacVentaIdFacVenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CategoriaProducto">
+    <End Role="Categoria" Type="ModelDistribuidora.Store.Categorias" Multiplicity="1" />
+    <End Role="Producto" Type="ModelDistribuidora.Store.Productos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="IdCategoria" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="CategoriaIdCategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="InventarioProducto">
+    <End Role="Inventario" Type="ModelDistribuidora.Store.Inventarios" Multiplicity="1" />
+    <End Role="Producto" Type="ModelDistribuidora.Store.Productos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inventario">
+        <PropertyRef Name="IdInventario" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="InventarioIdInventario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClienteFacVenta">
+    <End Role="Cliente" Type="ModelDistribuidora.Store.Personas_Cliente" Multiplicity="1" />
+    <End Role="FacVenta" Type="ModelDistribuidora.Store.FacVentas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="IdPersona" />
+      </Principal>
+      <Dependent Role="FacVenta">
+        <PropertyRef Name="ClienteIdPersona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmpleadoFacCompra">
+    <End Role="Empleado" Type="ModelDistribuidora.Store.Personas_Empleado" Multiplicity="1" />
+    <End Role="FacCompra" Type="ModelDistribuidora.Store.FacCompras" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="IdPersona" />
+      </Principal>
+      <Dependent Role="FacCompra">
+        <PropertyRef Name="EmpleadoIdPersona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cliente_inherits_Persona">
+    <End Role="Persona" Type="ModelDistribuidora.Store.Personas" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Cliente" Type="ModelDistribuidora.Store.Personas_Cliente" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="IdPersona" />
+      </Principal>
+      <Dependent Role="Cliente">
+        <PropertyRef Name="IdPersona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Empleado_inherits_Persona">
+    <End Role="Persona" Type="ModelDistribuidora.Store.Personas" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Empleado" Type="ModelDistribuidora.Store.Personas_Empleado" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="IdPersona" />
+      </Principal>
+      <Dependent Role="Empleado">
+        <PropertyRef Name="IdPersona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ModelDistribuidora" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ModelDistribuidoraContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Personas" EntityType="ModelDistribuidora.Persona" />
+          <EntitySet Name="Proveedores" EntityType="ModelDistribuidora.Proveedor" />
+          <EntitySet Name="Productos" EntityType="ModelDistribuidora.Producto" />
+          <EntitySet Name="Categorias" EntityType="ModelDistribuidora.Categoria" />
+          <EntitySet Name="Inventarios" EntityType="ModelDistribuidora.Inventario" />
+          <EntitySet Name="FacVentas" EntityType="ModelDistribuidora.FacVenta" />
+          <EntitySet Name="DetalleFacVentas" EntityType="ModelDistribuidora.DetalleFacVenta" />
+          <EntitySet Name="FacCompras" EntityType="ModelDistribuidora.FacCompra" />
+          <EntitySet Name="DetalleFacCompras" EntityType="ModelDistribuidora.DetalleFacCompra" />
+          <AssociationSet Name="ProveedorFacCompra" Association="ModelDistribuidora.ProveedorFacCompra">
+            <End Role="Proveedor" EntitySet="Proveedores" />
+            <End Role="FacCompra" EntitySet="FacCompras" />
+          </AssociationSet>
+          <AssociationSet Name="FacCompraDetalleFacCompra" Association="ModelDistribuidora.FacCompraDetalleFacCompra">
+            <End Role="FacCompra" EntitySet="FacCompras" />
+            <End Role="DetalleFacCompra" EntitySet="DetalleFacCompras" />
+          </AssociationSet>
+          <AssociationSet Name="ProductoDetalleFacCompra" Association="ModelDistribuidora.ProductoDetalleFacCompra">
+            <End Role="Producto" EntitySet="Productos" />
+            <End Role="DetalleFacCompra" EntitySet="DetalleFacCompras" />
+          </AssociationSet>
+          <AssociationSet Name="ProductoDetalleFacVenta" Association="ModelDistribuidora.ProductoDetalleFacVenta">
+            <End Role="Producto" EntitySet="Productos" />
+            <End Role="DetalleFacVenta" EntitySet="DetalleFacVentas" />
+          </AssociationSet>
+          <AssociationSet Name="FacVentaDetalleFacVenta" Association="ModelDistribuidora.FacVentaDetalleFacVenta">
+            <End Role="FacVenta" EntitySet="FacVentas" />
+            <End Role="DetalleFacVenta" EntitySet="DetalleFacVentas" />
+          </AssociationSet>
+          <AssociationSet Name="CategoriaProducto" Association="ModelDistribuidora.CategoriaProducto">
+            <End Role="Categoria" EntitySet="Categorias" />
+            <End Role="Producto" EntitySet="Productos" />
+          </AssociationSet>
+          <AssociationSet Name="InventarioProducto" Association="ModelDistribuidora.InventarioProducto">
+            <End Role="Inventario" EntitySet="Inventarios" />
+            <End Role="Producto" EntitySet="Productos" />
+          </AssociationSet>
+          <AssociationSet Name="ClienteFacVenta" Association="ModelDistribuidora.ClienteFacVenta">
+            <End Role="Cliente" EntitySet="Personas" />
+            <End Role="FacVenta" EntitySet="FacVentas" />
+          </AssociationSet>
+          <AssociationSet Name="EmpleadoFacCompra" Association="ModelDistribuidora.EmpleadoFacCompra">
+            <End Role="Empleado" EntitySet="Personas" />
+            <End Role="FacCompra" EntitySet="FacCompras" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="IdPersona" />
+          </Key>
+          <Property Name="IdPersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="5" />
+          <Property Name="PrimerNombre" Type="String" Nullable="false" FixedLength="true" MaxLength="15" Unicode="false" />
+          <Property Name="SegundoNombre" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="15" />
+          <Property Name="PrimerApellido" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="15" />
+          <Property Name="SegundoApellido" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="15" />
+          <Property Name="Telefono" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="10" />
+          <Property Name="Genero" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="10" />
+          <Property Name="Correo" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="20" />
+          <Property Name="Direccion" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Proveedor">
+          <Key>
+            <PropertyRef Name="IProveedor" />
+          </Key>
+          <Property Name="IProveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="5" />
+          <Property Name="Nombre" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="15" />
+          <Property Name="RazonSocial" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="20" />
+          <Property Name="Ruc" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="20" />
+          <Property Name="Telefono" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="10" />
+          <Property Name="Correo" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="20" />
+          <Property Name="Direccion" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="50" />
+          <NavigationProperty Name="FacCompra" Relationship="ModelDistribuidora.ProveedorFacCompra" FromRole="Proveedor" ToRole="FacCompra" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+          </Key>
+          <Property Name="IdProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="30" />
+          <Property Name="Marca" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="20" />
+          <Property Name="Presentacion" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="20" />
+          <Property Name="Costo" Type="Double" Nullable="false" />
+          <Property Name="Precio" Type="Double" Nullable="false" />
+          <Property Name="UPC" Type="Int32" Nullable="false" />
+          <Property Name="Categoria" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="20" />
+          <Property Name="Minimo" Type="Int32" Nullable="false" />
+          <Property Name="Maximo" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DetalleFacCompra" Relationship="ModelDistribuidora.ProductoDetalleFacCompra" FromRole="Producto" ToRole="DetalleFacCompra" />
+          <NavigationProperty Name="DetalleFacVenta" Relationship="ModelDistribuidora.ProductoDetalleFacVenta" FromRole="Producto" ToRole="DetalleFacVenta" />
+          <NavigationProperty Name="Categoria1" Relationship="ModelDistribuidora.CategoriaProducto" FromRole="Producto" ToRole="Categoria" />
+          <Property Name="CategoriaIdCategoria" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Inventario" Relationship="ModelDistribuidora.InventarioProducto" FromRole="Producto" ToRole="Inventario" />
+          <Property Name="InventarioIdInventario" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="IdCategoria" />
+          </Key>
+          <Property Name="IdCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="20" />
+          <NavigationProperty Name="Producto" Relationship="ModelDistribuidora.CategoriaProducto" FromRole="Categoria" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Inventario">
+          <Key>
+            <PropertyRef Name="IdInventario" />
+          </Key>
+          <Property Name="IdInventario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="30" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Producto" Relationship="ModelDistribuidora.InventarioProducto" FromRole="Inventario" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="FacVenta">
+          <Key>
+            <PropertyRef Name="IdFacVenta" />
+          </Key>
+          <Property Name="IdFacVenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumFactura" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="15" />
+          <Property Name="Ruc" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="20" />
+          <Property Name="Cliente" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="30" />
+          <Property Name="Vendedor" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="30" />
+          <Property Name="SubTotal" Type="Double" Nullable="false" />
+          <Property Name="IVA" Type="Double" Nullable="false" />
+          <Property Name="Total" Type="Double" Nullable="false" />
+          <Property Name="Pago" Type="Double" Nullable="false" />
+          <NavigationProperty Name="DetalleFacVenta" Relationship="ModelDistribuidora.FacVentaDetalleFacVenta" FromRole="FacVenta" ToRole="DetalleFacVenta" />
+          <NavigationProperty Name="Cliente1" Relationship="ModelDistribuidora.ClienteFacVenta" FromRole="FacVenta" ToRole="Cliente" />
+          <Property Name="ClienteIdPersona" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DetalleFacVenta">
+          <Key>
+            <PropertyRef Name="IdDetalleVenta" />
+          </Key>
+          <Property Name="IdDetalleVenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="Int32" Nullable="false" />
+          <Property Name="DesPro" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="15" />
+          <Property Name="MarPro" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="15" />
+          <Property Name="CanPro" Type="Double" Nullable="false" />
+          <Property Name="PrePro" Type="Double" Nullable="false" />
+          <Property Name="TotPro" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Producto" Relationship="ModelDistribuidora.ProductoDetalleFacVenta" FromRole="DetalleFacVenta" ToRole="Producto" />
+          <Property Name="ProductoIdProducto" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FacVenta" Relationship="ModelDistribuidora.FacVentaDetalleFacVenta" FromRole="DetalleFacVenta" ToRole="FacVenta" />
+          <Property Name="FacVentaIdFacVenta" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FacCompra">
+          <Key>
+            <PropertyRef Name="IdFacCompra" />
+          </Key>
+          <Property Name="IdFacCompra" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Codigo" Type="Int32" Nullable="false" />
+          <Property Name="NumFactura" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="15" />
+          <Property Name="SubTotal" Type="Double" Nullable="false" />
+          <Property Name="IVA" Type="Double" Nullable="false" />
+          <Property Name="Total" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Proveedor" Relationship="ModelDistribuidora.ProveedorFacCompra" FromRole="FacCompra" ToRole="Proveedor" />
+          <Property Name="ProveedorIProveedor" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DetalleFacCompra" Relationship="ModelDistribuidora.FacCompraDetalleFacCompra" FromRole="FacCompra" ToRole="DetalleFacCompra" />
+          <NavigationProperty Name="Empleado" Relationship="ModelDistribuidora.EmpleadoFacCompra" FromRole="FacCompra" ToRole="Empleado" />
+          <Property Name="EmpleadoIdPersona" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DetalleFacCompra">
+          <Key>
+            <PropertyRef Name="IdDetalleCompra" />
+          </Key>
+          <Property Name="IdDetalleCompra" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodPro" Type="Int32" Nullable="false" />
+          <Property Name="DesPro" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="30" />
+          <Property Name="MarPro" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="30" />
+          <Property Name="CanPro" Type="Double" Nullable="false" />
+          <Property Name="PrecPro" Type="Double" Nullable="false" />
+          <Property Name="TotalPro" Type="Double" Nullable="false" />
+          <NavigationProperty Name="FacCompra" Relationship="ModelDistribuidora.FacCompraDetalleFacCompra" FromRole="DetalleFacCompra" ToRole="FacCompra" />
+          <Property Name="FacCompraIdFacCompra" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Producto" Relationship="ModelDistribuidora.ProductoDetalleFacCompra" FromRole="DetalleFacCompra" ToRole="Producto" />
+          <Property Name="ProductoIdProducto" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cliente" BaseType="ModelDistribuidora.Persona">
+          <Property Name="IdCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ruc" Type="String" Nullable="false" FixedLength="true" Unicode="true" MaxLength="20" />
+          <NavigationProperty Name="FacVenta" Relationship="ModelDistribuidora.ClienteFacVenta" FromRole="Cliente" ToRole="FacVenta" />
+        </EntityType>
+        <EntityType Name="Empleado" BaseType="ModelDistribuidora.Persona">
+          <Property Name="IdEmplado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Inss" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="10" />
+          <Property Name="Cargo" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="20" />
+          <Property Name="Carnet" Type="String" Nullable="false" FixedLength="true" Unicode="false" MaxLength="10" />
+          <Property Name="FecIngreso" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="FacCompra" Relationship="ModelDistribuidora.EmpleadoFacCompra" FromRole="Empleado" ToRole="FacCompra" />
+        </EntityType>
+        <Association Name="ProveedorFacCompra">
+          <End Type="ModelDistribuidora.Proveedor" Role="Proveedor" Multiplicity="1" />
+          <End Type="ModelDistribuidora.FacCompra" Role="FacCompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="IProveedor" />
+            </Principal>
+            <Dependent Role="FacCompra">
+              <PropertyRef Name="ProveedorIProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FacCompraDetalleFacCompra">
+          <End Type="ModelDistribuidora.FacCompra" Role="FacCompra" Multiplicity="1" />
+          <End Type="ModelDistribuidora.DetalleFacCompra" Role="DetalleFacCompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FacCompra">
+              <PropertyRef Name="IdFacCompra" />
+            </Principal>
+            <Dependent Role="DetalleFacCompra">
+              <PropertyRef Name="FacCompraIdFacCompra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductoDetalleFacCompra">
+          <End Type="ModelDistribuidora.Producto" Role="Producto" Multiplicity="1" />
+          <End Type="ModelDistribuidora.DetalleFacCompra" Role="DetalleFacCompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="DetalleFacCompra">
+              <PropertyRef Name="ProductoIdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductoDetalleFacVenta">
+          <End Type="ModelDistribuidora.Producto" Role="Producto" Multiplicity="1" />
+          <End Type="ModelDistribuidora.DetalleFacVenta" Role="DetalleFacVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="DetalleFacVenta">
+              <PropertyRef Name="ProductoIdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FacVentaDetalleFacVenta">
+          <End Type="ModelDistribuidora.FacVenta" Role="FacVenta" Multiplicity="1" />
+          <End Type="ModelDistribuidora.DetalleFacVenta" Role="DetalleFacVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FacVenta">
+              <PropertyRef Name="IdFacVenta" />
+            </Principal>
+            <Dependent Role="DetalleFacVenta">
+              <PropertyRef Name="FacVentaIdFacVenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CategoriaProducto">
+          <End Type="ModelDistribuidora.Categoria" Role="Categoria" Multiplicity="1" />
+          <End Type="ModelDistribuidora.Producto" Role="Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="IdCategoria" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="CategoriaIdCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="InventarioProducto">
+          <End Type="ModelDistribuidora.Inventario" Role="Inventario" Multiplicity="1" />
+          <End Type="ModelDistribuidora.Producto" Role="Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventario">
+              <PropertyRef Name="IdInventario" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="InventarioIdInventario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ClienteFacVenta">
+          <End Type="ModelDistribuidora.Cliente" Role="Cliente" Multiplicity="1" />
+          <End Type="ModelDistribuidora.FacVenta" Role="FacVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="IdPersona" />
+            </Principal>
+            <Dependent Role="FacVenta">
+              <PropertyRef Name="ClienteIdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EmpleadoFacCompra">
+          <End Type="ModelDistribuidora.Empleado" Role="Empleado" Multiplicity="1" />
+          <End Type="ModelDistribuidora.FacCompra" Role="FacCompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="IdPersona" />
+            </Principal>
+            <Dependent Role="FacCompra">
+              <PropertyRef Name="EmpleadoIdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelDistribuidoraStoreContainer" CdmEntityContainer="ModelDistribuidoraContainer">
+    <EntitySetMapping Name="Personas">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDistribuidora.Persona)">
+        <MappingFragment StoreEntitySet="Personas">
+          <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="PrimerNombre" ColumnName="PrimerNombre" />
+          <ScalarProperty Name="SegundoNombre" ColumnName="SegundoNombre" />
+          <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+          <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Genero" ColumnName="Genero" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDistribuidora.Cliente)">
+        <MappingFragment StoreEntitySet="Personas_Cliente">
+          <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="Ruc" ColumnName="Ruc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDistribuidora.Empleado)">
+        <MappingFragment StoreEntitySet="Personas_Empleado">
+          <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+          <ScalarProperty Name="IdEmplado" ColumnName="IdEmplado" />
+          <ScalarProperty Name="Inss" ColumnName="Inss" />
+          <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+          <ScalarProperty Name="Carnet" ColumnName="Carnet" />
+          <ScalarProperty Name="FecIngreso" ColumnName="FecIngreso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Proveedores">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDistribuidora.Proveedor)">
+        <MappingFragment StoreEntitySet="Proveedores">
+          <ScalarProperty Name="IProveedor" ColumnName="IProveedor" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+          <ScalarProperty Name="Ruc" ColumnName="Ruc" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Productos">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDistribuidora.Producto)">
+        <MappingFragment StoreEntitySet="Productos">
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Marca" ColumnName="Marca" />
+          <ScalarProperty Name="Presentacion" ColumnName="Presentacion" />
+          <ScalarProperty Name="Costo" ColumnName="Costo" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="UPC" ColumnName="UPC" />
+          <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+          <ScalarProperty Name="Minimo" ColumnName="Minimo" />
+          <ScalarProperty Name="Maximo" ColumnName="Maximo" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="CategoriaIdCategoria" ColumnName="CategoriaIdCategoria" />
+          <ScalarProperty Name="InventarioIdInventario" ColumnName="InventarioIdInventario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categorias">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDistribuidora.Categoria)">
+        <MappingFragment StoreEntitySet="Categorias">
+          <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inventarios">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDistribuidora.Inventario)">
+        <MappingFragment StoreEntitySet="Inventarios">
+          <ScalarProperty Name="IdInventario" ColumnName="IdInventario" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FacVentas">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDistribuidora.FacVenta)">
+        <MappingFragment StoreEntitySet="FacVentas">
+          <ScalarProperty Name="IdFacVenta" ColumnName="IdFacVenta" />
+          <ScalarProperty Name="NumFactura" ColumnName="NumFactura" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Ruc" ColumnName="Ruc" />
+          <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+          <ScalarProperty Name="Vendedor" ColumnName="Vendedor" />
+          <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+          <ScalarProperty Name="IVA" ColumnName="IVA" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Pago" ColumnName="Pago" />
+          <ScalarProperty Name="ClienteIdPersona" ColumnName="ClienteIdPersona" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DetalleFacVentas">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDistribuidora.DetalleFacVenta)">
+        <MappingFragment StoreEntitySet="DetalleFacVentas">
+          <ScalarProperty Name="IdDetalleVenta" ColumnName="IdDetalleVenta" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="DesPro" ColumnName="DesPro" />
+          <ScalarProperty Name="MarPro" ColumnName="MarPro" />
+          <ScalarProperty Name="CanPro" ColumnName="CanPro" />
+          <ScalarProperty Name="PrePro" ColumnName="PrePro" />
+          <ScalarProperty Name="TotPro" ColumnName="TotPro" />
+          <ScalarProperty Name="ProductoIdProducto" ColumnName="ProductoIdProducto" />
+          <ScalarProperty Name="FacVentaIdFacVenta" ColumnName="FacVentaIdFacVenta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FacCompras">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDistribuidora.FacCompra)">
+        <MappingFragment StoreEntitySet="FacCompras">
+          <ScalarProperty Name="IdFacCompra" ColumnName="IdFacCompra" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="NumFactura" ColumnName="NumFactura" />
+          <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+          <ScalarProperty Name="IVA" ColumnName="IVA" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="ProveedorIProveedor" ColumnName="ProveedorIProveedor" />
+          <ScalarProperty Name="EmpleadoIdPersona" ColumnName="EmpleadoIdPersona" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DetalleFacCompras">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDistribuidora.DetalleFacCompra)">
+        <MappingFragment StoreEntitySet="DetalleFacCompras">
+          <ScalarProperty Name="IdDetalleCompra" ColumnName="IdDetalleCompra" />
+          <ScalarProperty Name="CodPro" ColumnName="CodPro" />
+          <ScalarProperty Name="DesPro" ColumnName="DesPro" />
+          <ScalarProperty Name="MarPro" ColumnName="MarPro" />
+          <ScalarProperty Name="CanPro" ColumnName="CanPro" />
+          <ScalarProperty Name="PrecPro" ColumnName="PrecPro" />
+          <ScalarProperty Name="TotalPro" ColumnName="TotalPro" />
+          <ScalarProperty Name="FacCompraIdFacCompra" ColumnName="FacCompraIdFacCompra" />
+          <ScalarProperty Name="ProductoIdProducto" ColumnName="ProductoIdProducto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ModelAcceso" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="ModelAccesoContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Permiso" EntityType="ModelAcceso.Permiso" />
+    <EntitySet Name="AsignacionPermisos" EntityType="ModelAcceso.AsignacionPermisos" />
+    <EntitySet Name="Usuario" EntityType="ModelAcceso.Usuario" />
+    <AssociationSet Name="PermisoAsignacionPermisos" Association="ModelAcceso.PermisoAsignacionPermisos">
+      <End Role="Permiso" EntitySet="Permiso" />
+      <End Role="AsignacionPermisos" EntitySet="AsignacionPermisos" />
+    </AssociationSet>
+    <AssociationSet Name="UsuarioAsignacionPermisos" Association="ModelAcceso.UsuarioAsignacionPermisos">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="AsignacionPermisos" EntitySet="AsignacionPermisos" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Permiso">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="true" />
+    <Property Name="CodPemiso" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="AsignacionPermisos" Relationship="ModelAcceso.PermisoAsignacionPermisos" FromRole="Permiso" ToRole="AsignacionPermisos" />
+  </EntityType>
+  <EntityType Name="AsignacionPermisos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PermisoId" Type="Int32" Nullable="false" />
+    <Property Name="UsuarioId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Permiso" Relationship="ModelAcceso.PermisoAsignacionPermisos" FromRole="AsignacionPermisos" ToRole="Permiso" />
+    <NavigationProperty Name="Usuario" Relationship="ModelAcceso.UsuarioAsignacionPermisos" FromRole="AsignacionPermisos" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Users" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Pass" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Nombres" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Apellidos" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Cedula" Type="String" Nullable="false" MaxLength="16" FixedLength="true" Unicode="true" />
+    <Property Name="Salario" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Direccion" Type="String" Nullable="false" MaxLength="80" FixedLength="true" Unicode="true" />
+    <Property Name="Estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AsignacionPermisos" Relationship="ModelAcceso.UsuarioAsignacionPermisos" FromRole="Usuario" ToRole="AsignacionPermisos" />
+  </EntityType>
+  <Association Name="PermisoAsignacionPermisos">
+    <End Type="ModelAcceso.Permiso" Role="Permiso" Multiplicity="1" />
+    <End Type="ModelAcceso.AsignacionPermisos" Role="AsignacionPermisos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Permiso">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AsignacionPermisos">
+        <PropertyRef Name="PermisoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UsuarioAsignacionPermisos">
+    <End Type="ModelAcceso.Usuario" Role="Usuario" Multiplicity="1" />
+    <End Type="ModelAcceso.AsignacionPermisos" Role="AsignacionPermisos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AsignacionPermisos">
+        <PropertyRef Name="UsuarioId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
